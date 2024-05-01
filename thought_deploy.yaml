@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thoughtfortheday
+  labels:
+    app: thoughtfortheday
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thoughtfortheday
+  template:
+    metadata:
+      labels:
+        app: thoughtfortheday
+    spec:
+      containers:
+      - name: thoughtfortheday
+        image: knightblue/thoughtfortheday:1.1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_ENV
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: thoughtfortheday-service
+  labels:
+    app: thoughtfortheday
+spec:
+  selector:
+    app: thoughtfortheday
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5000
+    targetPort: 5000
+  type: LoadBalancer
