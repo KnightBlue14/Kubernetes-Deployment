@@ -55,7 +55,7 @@ This file tells kubernetes how to deploy your application, and is split into two
 The first half concerns the flask deployment, and mostly concerns metadata, which can be left alone, apart from a few lines -
 * replicas (line 8) - this determines how many instances of your app will be deployed, be it 1, 3, 10, however many you need. This is mainly for redundancy purposes, but will use more resources from your system, so I would advise it be left at 1.
 * image (line 19) - this will be the image that kubernetes uses to build the container, and will pull it from the listed repository. If you have your own version of the app, you will need to change the targeted image. Just use the details you entered to build your image earlier
-* containerPort (line 21) - The port within the Docker container that the application will use. Unless you have a aprticular use case, this can be left alone
+* containerPort (line 21) - The port within the Docker container that the application will use. Unless you have a particular use case, this can be left alone
 
 The second half covers the flask service. The only things you need to be aware of are the port and targetPort variables. For convenience, I would suggest leaving them be. If you want to change them, I'd recommend making them the same, provided your machine doesn't have anything running on that port already.
 
